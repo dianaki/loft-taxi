@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Menu = ({ change }) => {
+const Menu = ({ change }) => {
   return (
     <div>
       <nav className="menu">
@@ -17,3 +17,5 @@ export const Menu = ({ change }) => {
     </div>
   );
 }
+
+export default Menu;

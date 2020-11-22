@@ -1,9 +1,9 @@
 import React from 'react';
 
-export const SignUp = ({ formSubmit }) => {
+const SignUp = ({ changeSignUp }) => {
   return (
     <div>
-      <form onSubmit={formSubmit}>
+      <form onSubmit={(event) => (event.preventDefault(), alert('ок!'))}>
         <h2>Регистрация</h2>
         <label htmlFor='email'>Email*</label>
         <input id='email' type='email' name='email' size='28' />
@@ -13,9 +13,11 @@ export const SignUp = ({ formSubmit }) => {
         <input id='password' type='password' name='password' size='28' />
         <button type='submit'>Зарегистрироваться</button>
         <div>Уже зарегистрированы?
-          <a href='/'>Войти</a>
+          <a href='/' onClick={(event) => changeSignUp(event, 'login')}>Войти</a>
         </div>
       </form>
     </div>
   )
 }
+
+export default SignUp;

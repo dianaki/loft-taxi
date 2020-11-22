@@ -1,9 +1,9 @@
 import React from 'react';
-import { Header } from './Header';
-import { Login } from './Login';
-import { SignUp } from './SignUp';
-import { Map } from './Map';
-import { Profile } from './Profile';
+import Header from './components/Header';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
+import Map from './pages/Map';
+import Profile from './pages/Profile';
 import './App.css';
 
 class App extends React.Component {
@@ -15,21 +15,17 @@ class App extends React.Component {
     this.setState({ currentPage: newpage });
   };
 
-  formSubmit = (event) => {
-    event.preventDefault();
-    this.setState({ currentPage: 'map' })
-  };
-
   render() {
     return (
       <div>
         <Header changePage={this.changeCurrentPage} />
         {this.state.currentPage === 'profile' && <Profile />}
-        {this.state.currentPage === 'login' && <Login />}
+        {this.state.currentPage === 'login' && <Login changeLogin={this.changeCurrentPage} />}
         {this.state.currentPage === 'map' && <Map />}
-        {this.state.currentPage === 'signUp' && <SignUp />}
+        {this.state.currentPage === 'signUp' && <SignUp changeSignUp={this.changeCurrentPage} />}
       </div>
     )
   }
 }
+
 export default App;
