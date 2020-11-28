@@ -1,25 +1,31 @@
-import logo from './logo.svg';
+import React from 'react';
+import Header from './components/Header';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
+import Map from './pages/Map';
+import Profile from './pages/Profile';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  state = { currentPage: 'login' }
+
+  changeCurrentPage = (event, newpage) => {
+    event.preventDefault();
+    this.setState({ currentPage: newpage });
+  };
+
+  render() {
+    return (
+      <div>
+        <Header changePage={this.changeCurrentPage} />
+        {this.state.currentPage === 'profile' && <Profile />}
+        {this.state.currentPage === 'login' && <Login changeLogin={this.changeCurrentPage} />}
+        {this.state.currentPage === 'map' && <Map />}
+        {this.state.currentPage === 'signUp' && <SignUp changeSignUp={this.changeCurrentPage} />}
+      </div>
+    )
+  }
 }
 
 export default App;
