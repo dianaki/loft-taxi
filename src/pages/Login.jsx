@@ -1,9 +1,12 @@
 import React from 'react';
 
+import { Logo } from 'loft-taxi-mui-theme';
+
 const Login = ({ changeLogin }) => {
 
   return (
     <div>
+      <Logo />
       <form>
         <h2>Войти</h2>
         <label htmlFor='email'>Email</label>
