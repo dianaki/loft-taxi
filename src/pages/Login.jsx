@@ -1,20 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { Logo } from 'loft-taxi-mui-theme';
+import PropTypes from 'prop-types';
+import { withAuth } from '../AuthContext';
 
-const Login = ({ changeLogin }) => {
+export const Login = ({ changeLogin, isLoggedIn, logIn }) => {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  if (!isLoggedIn) {
+      return null;
+  }
 
   return (
     <div>
-      <Logo />
       <form>
         <h2>Войти</h2>
         <label htmlFor='email'>Email</label>
-        <input id='email' type='email' name='email' size='28' placeholder='mail@mail.ru' />
+        <input id='email' type='email' name='email' size='28' value={email} onChange={e => setEmail(e.target.value)} placeholder='mail@mail.ru' />
         <label htmlFor='password'>Пароль</label>
-        <input id='password' type='password' name='password' size='28' placeholder='********' />
+        <input id='password' type='password' name='password' size='28' value={password} onChange={e => setPassword(e.target.value)} placeholder='********' />
         <a href='/'>Забыли пароль?</a>
-        <a href="" onClick={(event) => changeLogin(event, 'map')}>Войти</a>
+        <a href="" onClick={(event) => {
+          logIn(email, password);
+          changeLogin(event, 'profile')}
+        }>Войти</a>
         <div>Новый пользователь?</div>
         <a href="/" onClick={(event) => changeLogin(event, 'signUp')}>Зарегистрируйтесь</a>
       </form>
@@ -22,4 +31,4 @@ const Login = ({ changeLogin }) => {
   )
 }
 
-export default Login;
+export const LoginWithAuth =  withAuth(Login);

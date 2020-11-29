@@ -1,11 +1,10 @@
 import React from 'react';
 
-import { Logo } from 'loft-taxi-mui-theme';
+import PropTypes from 'prop-types';
 
 const SignUp = ({ changeSignUp }) => {
   return (
     <div>
-      <Logo />
       <form onSubmit={(event) => (event.preventDefault(), alert('ок!'))}>
         <h2>Регистрация</h2>
         <label htmlFor='email'>Email*</label>

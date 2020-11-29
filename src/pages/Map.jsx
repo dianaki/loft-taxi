@@ -1,8 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 
-import { Logo } from 'loft-taxi-mui-theme';
-
 const Map = () => {
   const mapContainer = useRef();
   let map = null;
@@ -24,7 +22,6 @@ const Map = () => {
 
   return (
     <div>
-      <Logo />
       <div className="map-wrapper" ref={mapContainer} />
     </div>
   );

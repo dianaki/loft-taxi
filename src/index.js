@@ -6,10 +6,13 @@ import reportWebVitals from './reportWebVitals';
 
 import { theme } from "loft-taxi-mui-theme";
 import { MuiThemeProvider } from "@material-ui/core/styles";
+import { AuthProvider } from './AuthContext';
 
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
-    <App />
+    <AuthProvider>
+      <App />
+    </AuthProvider>
   </MuiThemeProvider>,
   document.getElementById('root')
 );

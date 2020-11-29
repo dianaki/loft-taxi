@@ -1,14 +1,14 @@
 import React from 'react';
 
-import { Logo } from 'loft-taxi-mui-theme';
+import PropTypes from 'prop-types';
+import { withAuth } from '../AuthContext';
 
-const Profile = () => {
+export const Profile = () => {
   return (
     <div>
-      <Logo />
       <div>Профиль</div>
     </div>
   );
 }
 
-export default Profile;
+export const ProfileWithAuth =  withAuth(Profile);
