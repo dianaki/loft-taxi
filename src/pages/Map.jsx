@@ -21,7 +21,7 @@ const Map = () => {
   }, []);
 
   return (
-    <div className='map-wrapper' ref={mapContainer} />
+    <div className='map-wrapper' data-testid='map' ref={mapContainer} />
   );
 };
 
