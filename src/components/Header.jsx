@@ -17,22 +17,20 @@ class Header extends Component {
   render() {
     return (
       <header>
-        <div>
-          <Logo />
-          <nav>
-            <ul>
-              <li>
-                <button onClick={() => {this.props.changePage('map')}}>Карта</button>
-              </li>
-              <li>
-                <button onClick={() => {this.props.changePage('profile')}}>Профиль</button>
-              </li>
-              <li>
-                <button onClick={this.unauthenticate}>Выйти</button>
-              </li>
-            </ul>
-          </nav>
-        </div>
+        <Logo />
+        <nav>
+          <ul>
+            <li>
+              <button onClick={() => { this.props.changePage('map') }}>Карта</button>
+            </li>
+            <li>
+              <button onClick={() => { this.props.changePage('profile') }}>Профиль</button>
+            </li>
+            <li>
+              <button onClick={this.unauthenticate}>Выйти</button>
+            </li>
+          </ul>
+        </nav>
       </header>
     );
   }
