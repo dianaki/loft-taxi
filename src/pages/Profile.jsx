@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 import { withAuth } from '../AuthContext';
 
-export const Profile = () => {
-  return (
-    <div>
+class Profile extends Component {
+
+  static propTypes = {
+    currentPage: PropTypes.string
+  }
+  render() {
+    return (
       <div>Профиль</div>
-    </div>
-  );
+    );
+  }
 }
 
-export const ProfileWithAuth =  withAuth(Profile);
+export default withAuth(Profile);

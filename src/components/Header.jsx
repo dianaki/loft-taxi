@@ -1,15 +1,41 @@
-import React from 'react';
-import Menu from './Menu';
+import React, { Component } from 'react';
 import { Logo } from 'loft-taxi-mui-theme';
 import PropTypes from 'prop-types';
+import { withAuth } from '../AuthContext';
 
-const Header = ({ changePage }) => {
-  return (
-    <header>
-      <Logo />
-      <Menu change={changePage} />
-    </header>
-  );
+class Header extends Component {
+
+  static propTypes = {
+    changePage: PropTypes.func
+  }
+
+  unauthenticate = () => {
+    this.props.logOut();
+    this.props.changePage('login');
+  }
+
+  render() {
+    return (
+      <header>
+        <div>
+          <Logo />
+          <nav>
+            <ul>
+              <li>
+                <button onClick={() => {this.props.changePage('map')}}>Карта</button>
+              </li>
+              <li>
+                <button onClick={() => {this.props.changePage('profile')}}>Профиль</button>
+              </li>
+              <li>
+                <button onClick={this.unauthenticate}>Выйти</button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    );
+  }
 }
 
-export default Header;
+export default withAuth(Header);

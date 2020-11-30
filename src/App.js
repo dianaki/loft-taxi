@@ -1,12 +1,19 @@
 import React from 'react';
+import './App.css';
 import Header from './components/Header';
-import { LoginWithAuth } from './pages/Login';
+import Login from './pages/Login';
 import SignUp from './pages/SignUp';
+import Profile from './pages/Profile';
 import Map from './pages/Map';
-import { ProfileWithAuth } from './pages/Profile';
 import PropTypes from 'prop-types';
 import { withAuth } from './AuthContext';
-import './App.css';
+
+const PAGES = {
+  login: (props) => <Login {...props} />,
+  signUp: (props) => <SignUp {...props} />,
+  profile: (props) => <Profile {...props} />,
+  map: (props) => <Map {...props} />
+}
 
 class App extends React.Component {
 
@@ -16,10 +23,11 @@ class App extends React.Component {
 
   state = { currentPage: 'login' }
 
-  changeCurrentPage = (event, newpage) => {
-    event.preventDefault();
+  changeCurrentPage = (page) => {
     if (this.props.isLoggedIn) {
-      this.setState({ currentPage: newpage });
+      this.setState({ currentPage: page });
+    } else if (page === 'signUp') {
+      this.setState({ currentPage: 'signUp' });
     } else {
       this.setState({ currentPage: 'login' });
     }
@@ -27,12 +35,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='wrapper'>
         <Header changePage={this.changeCurrentPage} />
-        {this.state.currentPage === 'profile' && <ProfileWithAuth />}
-        {this.state.currentPage === 'login' && <LoginWithAuth changeLogin={this.changeCurrentPage} />}
-        {this.state.currentPage === 'map' && <Map />}
-        {this.state.currentPage === 'signUp' && <SignUp changeSignUp={this.changeCurrentPage} />}
+        {PAGES[this.state.currentPage]({ changePage: this.changeCurrentPage })}
       </div>
     );
   }

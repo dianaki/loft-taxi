@@ -21,9 +21,7 @@ const Map = () => {
   }, []);
 
   return (
-    <div>
-      <div className="map-wrapper" ref={mapContainer} />
-    </div>
+    <div className='map-wrapper' ref={mapContainer} />
   );
 };
 
