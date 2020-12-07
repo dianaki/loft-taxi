@@ -2,9 +2,11 @@ import React from 'react';
 import SignUp from './SignUp';
 import { render } from '@testing-library/react';
 
+import { BrowserRouter } from 'react-router-dom';
+
 describe('SignUp', () => {
   it('render signUp', () => {
-    const { getByLabelText } = render(<SignUp />)
+    const { getByLabelText } = render(<BrowserRouter><SignUp /></BrowserRouter>);
 
     expect(getByLabelText('Email*')).toHaveAttribute('name', 'email');
     expect(getByLabelText('Как вас зовут?*:')).toHaveAttribute('name', 'userName');

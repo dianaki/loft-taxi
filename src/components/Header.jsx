@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import { Logo } from 'loft-taxi-mui-theme';
-import PropTypes from 'prop-types';
 import { withAuth } from '../AuthContext';
+
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
 
-  static propTypes = {
-    changePage: PropTypes.func
-  }
-
   unauthenticate = () => {
     this.props.logOut();
-    this.props.changePage('login');
   }
 
   render() {
@@ -21,13 +17,13 @@ class Header extends Component {
         <nav>
           <ul>
             <li>
-              <button onClick={() => { this.props.changePage('map') }}>Карта</button>
+              <Link to='/map'>Карта</Link>
             </li>
             <li>
-              <button onClick={() => { this.props.changePage('profile') }}>Профиль</button>
+              <Link to='/profile'>Профиль</Link>
             </li>
             <li>
-              <button onClick={this.unauthenticate}>Выйти</button>
+            <Link to='/'>Выйти</Link>
             </li>
           </ul>
         </nav>

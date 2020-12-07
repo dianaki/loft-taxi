@@ -1,28 +1,36 @@
-import React, { useEffect, useRef } from 'react';
+import React, { Component } from 'react';
 import mapboxgl from 'mapbox-gl';
+import './Map.css';
 
-const Map = () => {
-  const mapContainer = useRef();
-  let map = null;
+mapboxgl.accessToken = 'pk.eyJ1IjoiZGlhbmEyMTAyMTk5NCIsImEiOiJja2kxdmkzdDAwYm91MnBtdm9oYXJjNXo4In0.UDGy3Yom3vQ5xIgZ8vQAiQ';
 
-  useEffect(() => {
-    mapboxgl.accessToken = 'pk.eyJ1IjoiZGlhbmEyMTAyMTk5NCIsImEiOiJja2kxdmkzdDAwYm91MnBtdm9oYXJjNXo4In0.UDGy3Yom3vQ5xIgZ8vQAiQ';
-    map = new mapboxgl.Map({
-      container: mapContainer.current,
+
+class Map extends Component {
+  constructor(props) {
+    super(props);
+    this.map = null;
+    this.mapContainer = React.createRef();
+  }
+  componentDidMount() {
+    this.map = new mapboxgl.Map({
+      container: this.mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v9',
       center: [30.315, 59.940],
-      zoom: 11,
+      zoom: 11
     });
+  }
 
-    return () => {
-      map.remove();
-    };
+  componentWillUnmount() {
+    this.map.remove();
+  }
 
-  }, []);
-
-  return (
-    <div className='map-wrapper' data-testid='map' ref={mapContainer} />
-  );
-};
+  render() {
+    return (
+      <>
+        <div className='map-wrapper' data-testid='map' ref={this.mapContainer} />
+      </>
+    );
+  }
+}
 
 export default Map;

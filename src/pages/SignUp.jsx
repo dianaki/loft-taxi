@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-
-import PropTypes from 'prop-types';
 import { withAuth } from '../AuthContext';
+
+import { Link, Redirect } from 'react-router-dom';
 
 class SignUp extends Component {
   state = {
@@ -10,15 +10,11 @@ class SignUp extends Component {
     password: ''
   }
 
-  static propTypes = {
-    changePage: PropTypes.func
-  }
-
   authenticate = (event) => {
     event.preventDefault();
     const { email, password } = event.target;
     this.props.logIn(email.value, password.value);
-    this.props.changePage('map');
+    <Redirect to='/map' />
   }
 
 
@@ -62,7 +58,7 @@ class SignUp extends Component {
           <button type='submit'>Зарегестрироваться</button>
         </form>
         <div>Уже зарегестрированы?</div>
-        <button onClick={() => { this.props.changePage('login') }}>Войти</button>
+        <Link to='/'>Войти</Link>
       </>
     );
   }

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Route, Redirect } from 'react-router-dom';
+
 export const AuthContext = React.createContext()
 
 export const AuthProvider = ({ children }) => {
@@ -39,3 +41,17 @@ export const withAuth = (WrappedComponent) => {
     }
   }
 }
+
+export const PrivateRoute = withAuth(({
+  component: RouteComponent,
+  isLoggedIn
+}) => (
+    <Route
+      render={routeProps =>
+        isLoggedIn ? (
+          <RouteComponent {...routeProps} />
+        ) : (
+            <Redirect to='/' />
+          )}
+    />
+  ));
