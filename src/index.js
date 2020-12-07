@@ -4,10 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { theme } from "loft-taxi-mui-theme";
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import { AuthProvider } from './AuthContext';
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <MuiThemeProvider theme={theme}>
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  </MuiThemeProvider>,
   document.getElementById('root')
 );
 
