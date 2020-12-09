@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { withAuth } from '../AuthContext';
-
 import { Link, Redirect } from 'react-router-dom';
+
+import { connect } from 'react-redux';
+import { signUp } from '../actions';
 
 class SignUp extends Component {
   state = {
@@ -12,9 +13,8 @@ class SignUp extends Component {
 
   authenticate = (event) => {
     event.preventDefault();
-    const { email, password } = event.target;
-    this.props.logIn(email.value, password.value);
-    <Redirect to='/map' />
+    const { email, firstName, lastName, password } = event.target;
+    this.props.signUp(email.value, firstName.value, lastName.value, password.value);
   }
 
 
@@ -23,7 +23,8 @@ class SignUp extends Component {
     const { email, userName, password } = this.state;
 
     return (
-      <>
+      <div>
+        {this.props.isLoggedIn && < Redirect to='/map' />}
         <h2>Регистрация</h2>
         <form onSubmit={this.authenticate}>
           <label htmlFor='email'>Email*
@@ -59,9 +60,12 @@ class SignUp extends Component {
         </form>
         <div>Уже зарегестрированы?</div>
         <Link to='/'>Войти</Link>
-      </>
+      </div>
     );
   }
 }
 
-export default withAuth(SignUp);
+export default connect((state) => ({
+  isLoggedIn: state.auth.isLoggedIn
+}),
+  { signUp })(SignUp);

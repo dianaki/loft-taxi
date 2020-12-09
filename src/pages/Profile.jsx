@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withAuth } from '../AuthContext';
 
 class Profile extends Component {
 
@@ -10,4 +9,4 @@ class Profile extends Component {
   }
 }
 
-export default withAuth(Profile);
+export default Profile;

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { withAuth } from '../AuthContext';
-
 import { Link, Redirect } from 'react-router-dom';
 
-class Login extends Component {
+import { connect } from 'react-redux';
+import { authenticate } from '../actions';
 
+class Login extends Component {
   state = {
     email: '',
     password: '',
@@ -13,13 +13,13 @@ class Login extends Component {
   authenticate = (event) => {
     event.preventDefault();
     const { email, password } = event.target;
-    this.props.logIn(email.value, password.value);
+    this.props.authenticate(email.value, password.value);
   }
 
   render() {
     const { email, password } = this.state;
     return (
-      <>
+      <div>
         {this.props.isLoggedIn && <Redirect to='/map' />}
         <h2>Войти</h2>
         <form onSubmit={this.authenticate}>
@@ -50,9 +50,12 @@ class Login extends Component {
         </form>
         <div>Новый пользователь?</div>
         <Link to='/signUp'>Зарегистрируйтесь</Link>
-      </>
+      </div>
     );
   }
 }
 
-export default withAuth(Login);
+export default connect((state) => ({
+  isLoggedIn: state.auth.isLoggedIn
+}),
+  { authenticate })(Login);

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Logo } from 'loft-taxi-mui-theme';
-import { withAuth } from '../AuthContext';
-
 import { Link } from 'react-router-dom';
+import './Header.css';
+import { connect } from 'react-redux';
+import { logOut } from '../actions';
+
 
 class Header extends Component {
-
   unauthenticate = () => {
     this.props.logOut();
   }
@@ -23,7 +24,7 @@ class Header extends Component {
               <Link to='/profile'>Профиль</Link>
             </li>
             <li>
-            <Link to='/'>Выйти</Link>
+              <Link to='/' onClick={this.unauthenticate}>Выйти</Link>
             </li>
           </ul>
         </nav>
@@ -32,4 +33,7 @@ class Header extends Component {
   }
 }
 
-export default withAuth(Header);
+export default connect(
+  null,
+  { logOut }
+)(Header);

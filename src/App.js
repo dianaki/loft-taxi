@@ -5,13 +5,32 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
 import Map from './pages/Map';
-import { withAuth, PrivateRoute } from './AuthContext';
-
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-class App extends React.Component {
-  state = { currentPage: 'login' }
+import { connect } from 'react-redux';
+import { logIn, logOut } from './actions';
 
+const PrivateRoute = connect(
+  (state) => ({ isLoggedIn: state.auth.isLoggedIn }),
+  { logIn, logOut }
+)(({
+  component: RouteComponent,
+  isLoggedIn,
+  ...rest
+}) => (
+    <Route
+      {...rest}
+      render={routeProps =>
+        isLoggedIn ? (
+          <RouteComponent {...routeProps} />
+        ) : (
+            <Redirect to='/' />
+          )
+      }
+    />
+  ));
+
+class App extends React.Component {
   render() {
     return (
       <div className='wrapper'>
@@ -32,4 +51,6 @@ class App extends React.Component {
   }
 }
 
-export default withAuth(App);
+export default connect((state) => ({
+  isLoggedIn: state.auth.isLoggedIn
+}))(App);
