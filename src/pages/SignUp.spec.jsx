@@ -2,7 +2,6 @@ import React from 'react';
 import SignUp from './SignUp';
 import { render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-
 import { Provider } from 'react-redux';
 
 const mockStore = {
@@ -21,7 +20,7 @@ describe('SignUp', () => {
       </BrowserRouter>
     );
     expect(getByLabelText('Email*')).toHaveAttribute('name', 'email');
-    expect(getByLabelText('Как вас зовут?*:')).toHaveAttribute('name', 'userName');
+    expect(getByLabelText('Как вас зовут?(Имя)*:')).toHaveAttribute('name', 'firstName');
     expect(getByLabelText('Придумайте пароль*')).toHaveAttribute('name', 'password');
   })
 })

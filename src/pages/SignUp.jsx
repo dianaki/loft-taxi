@@ -7,8 +7,9 @@ import { signUp } from '../actions';
 class SignUp extends Component {
   state = {
     email: '',
-    userName: '',
-    password: ''
+    firstName: '',
+    lastName: '',
+    password: '',
   }
 
   authenticate = (event) => {
@@ -20,7 +21,7 @@ class SignUp extends Component {
 
   render() {
 
-    const { email, userName, password } = this.state;
+    const { email, firstName, lastName, password } = this.state;
 
     return (
       <div>
@@ -37,13 +38,22 @@ class SignUp extends Component {
               onChange={event => this.setState({ email: event.target.value })}
             />
           </label>
-          <label htmlFor='userName'>Как вас зовут?*:
+          <label htmlFor='firstName'>Как вас зовут?(Имя)*:
             <input
-              id='userName'
-              name='userName'
+              id='firstName'
+              name='firstName'
               size='28'
-              value={userName}
-              onChange={event => this.setState({ userName: event.target.value })}
+              value={firstName}
+              onChange={event => this.setState({ firstName: event.target.value })}
+            />
+          </label>
+          <label htmlFor='lastName'>Как вас зовут?(Фамилия)*:
+            <input
+              id='lastName'
+              name='lastName'
+              size='28'
+              value={lastName}
+              onChange={event => this.setState({ lastName: event.target.value })}
             />
           </label>
           <label htmlFor='password'>Придумайте пароль*

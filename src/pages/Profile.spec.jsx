@@ -1,25 +1,27 @@
 import React from 'react';
 import Profile from './Profile';
 import { render } from '@testing-library/react';
-
-import {BrowserRouter} from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 const mockStore = {
-  getState: () => ({auth: {isLoggedIn: false}}),
-  subscribe: () => {},
-  dispatch: () => {}
-} 
+  getState: () => ({ auth: { isLoggedIn: true } }),
+  subscribe: () => { },
+  dispatch: () => { }
+}
 
 describe('Profile', () => {
-  it('renders correctly', () => {
-    const {container} = render(
+  it('render profile', () => {
+    const { getByLabelText } = render(
       <BrowserRouter>
-          <Provider store={mockStore}>
-              <Profile />
-          </Provider>
+        <Provider store={mockStore}>
+          <Profile />
+        </Provider>
       </BrowserRouter>
-  );
-    expect(container.innerHTML).toMatch('Профиль');
+    );
+    expect(getByLabelText('Номер карты')).toHaveAttribute('name', 'cardNumber');
+    expect(getByLabelText('MM/YY')).toHaveAttribute('name', 'expiryDate');
+    expect(getByLabelText('Имя владельца')).toHaveAttribute('name', 'cardName');
+    expect(getByLabelText('CVC')).toHaveAttribute('name', 'cvc');
   })
 })
