@@ -3,6 +3,7 @@ import { serverSetCard, serverGetCard } from '../api';
 import { SET_CARD, GET_CARD } from '../actions';
 
 export const cardMiddleware = (store) => (next) => async (action) => {
+    const token = window.localStorage.getItem('token')
   if(action.type === SET_CARD) {
       const { cardNumber, expiryDate, cardName, cvc, token} = action.payload;
       const success = await serverSetCard(cardNumber, expiryDate, cardName, cvc, token);
@@ -10,9 +11,7 @@ export const cardMiddleware = (store) => (next) => async (action) => {
           store.dispatch(setCardSuccess());  
       }
   } else if(action.type === GET_CARD) {
-      const { token } = action.payload;
       const data = await serverGetCard(token);
-      console.log(data);
       if(data) { 
           store.dispatch(getCardSuccess(data)); 
       }

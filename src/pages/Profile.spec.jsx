@@ -11,7 +11,7 @@ const mockStore = {
 }
 
 describe('Profile', () => {
-  it('render profile', () => {
+    it('render profile', () => {
     const { getByLabelText } = render(
       <BrowserRouter>
         <Provider store={mockStore}>

@@ -27,7 +27,7 @@ export const serverSignUp = async (email, firstName, lastName, password) => {
     }
   })
     .then(res => res.json())
-    .then(data => data.success)
+    .then(data => data)
 }
 
 
