@@ -8,7 +8,10 @@ export const GET_CARD = 'GET_CARD';
 export const SET_CARD_SUCCESS = 'SET_CARD_SUCCESS';
 export const GET_CARD_SUCCESS = 'GET_CARD_SUCCESS';
 
-export const logIn = () => ({ type: LOG_IN });
+export const logIn = (token) => ({
+  type: LOG_IN,
+  payload: { token }
+});
 export const logOut = () => ({ type: LOG_OUT });
 export const authenticate = (email, password) => ({
   type: AUTHENTICATE,

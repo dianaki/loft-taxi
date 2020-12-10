@@ -12,6 +12,7 @@ export const cardMiddleware = (store) => (next) => async (action) => {
   } else if(action.type === GET_CARD) {
       const { token } = action.payload;
       const data = await serverGetCard(token);
+      console.log(data);
       if(data) { 
           store.dispatch(getCardSuccess(data)); 
       }

@@ -10,7 +10,7 @@ export const serverLogIn = async (email, password) => {
     }
   })
     .then(res => res.json())
-    .then(data => data.success)
+    .then(data => data)
 }
 
 export const serverSignUp = async (email, firstName, lastName, password) => {

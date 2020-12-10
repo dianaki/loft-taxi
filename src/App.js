@@ -6,29 +6,26 @@ import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
 import Map from './pages/Map';
 import { Switch, Route, Redirect } from 'react-router-dom';
-
 import { connect } from 'react-redux';
-import { logIn, logOut } from './actions';
 
 const PrivateRoute = connect(
-  (state) => ({ isLoggedIn: state.auth.isLoggedIn }),
-  { logIn, logOut }
-)(({
-  component: RouteComponent,
-  isLoggedIn,
-  ...rest
-}) => (
-    <Route
-      {...rest}
-      render={routeProps =>
-        isLoggedIn ? (
-          <RouteComponent {...routeProps} />
-        ) : (
-            <Redirect to='/' />
-          )
-      }
-    />
-  ));
+  (state) => ({ isLoggedIn: state.auth.isLoggedIn }))
+  (({
+    component: RouteComponent,
+    isLoggedIn,
+    ...rest
+  }) => (
+      <Route
+        {...rest}
+        render={routeProps =>
+          isLoggedIn ? (
+            <RouteComponent {...routeProps} />
+          ) : (
+              <Redirect to='/' />
+            )
+        }
+      />
+    ));
 
 class App extends React.Component {
   render() {
@@ -51,6 +48,4 @@ class App extends React.Component {
   }
 }
 
-export default connect((state) => ({
-  isLoggedIn: state.auth.isLoggedIn
-}))(App);
+export default App;

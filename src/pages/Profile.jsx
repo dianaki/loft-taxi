@@ -8,7 +8,7 @@ class Profile extends Component {
     cardNumber: '',
     expiryDate: '',
     cardName: '',
-    cvc: ''
+    cvc: '',
   }
 
   componentDidMount() {
@@ -18,7 +18,7 @@ class Profile extends Component {
       this.setState({ cardNumber: this.props.cardNumber });
       this.setState({ expiryDate: this.props.expiryDate });
       this.setState({ cardName: this.props.cardName });
-      this.setState({ cvc: this.props.cvc })
+      this.setState({ cvc: this.props.cvc });
     }, 500)
   }
 
