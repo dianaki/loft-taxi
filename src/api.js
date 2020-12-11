@@ -46,7 +46,7 @@ export const serverSetCard = async (cardNumber, expiryDate, cardName, cvc, token
     }
   })
     .then(res => res.json())
-    .then(data => data.success)
+    .then(data => data)
 }
 
 export const serverGetCard = async (token) => {

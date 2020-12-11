@@ -12,24 +12,33 @@ export const logIn = (token) => ({
   type: LOG_IN,
   payload: { token }
 });
+
 export const logOut = () => ({ type: LOG_OUT });
+
 export const authenticate = (email, password) => ({
   type: AUTHENTICATE,
   payload: { email, password }
 });
+
 export const signUp = (email, firsName, lastName, password) => ({
   type: SIGNUP,
   payload: { email, firsName, lastName, password }
 });
+
 export const setCard = (cardNumber, expiryDate, cardName, cvc, token) => ({
   type: SET_CARD,
   payload: { cardNumber, expiryDate, cardName, cvc, token }
 });
-export const setCardSuccess = () => ({ type: SET_CARD_SUCCESS });
+
+export const setCardSuccess = () => ({ 
+  type: SET_CARD_SUCCESS 
+});
+
 export const getCard = (token) => ({
   type: GET_CARD,
   payload: { token }
 });
+
 export const getCardSuccess = (data) => ({
   type: GET_CARD_SUCCESS,
   payload: {

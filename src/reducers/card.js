@@ -1,7 +1,7 @@
 import { SET_CARD_SUCCESS, GET_CARD_SUCCESS } from '../actions';
 
 const initialState = {
-  loggedIn: true,
+  isLoggedIn: true,
   cardNumber: '',
   expiryDate: '',
   cardName: '',

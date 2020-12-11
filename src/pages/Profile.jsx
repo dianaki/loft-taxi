@@ -84,11 +84,11 @@ class Profile extends Component {
 
 export default connect(
   (state) => ({
-    cardNumber: state.cardNumber,
-    expiryDate: state.expiryDate,
-    cardName: state.cardName,
-    cvc: state.cvc,
-    token: state.token
+    cardNumber: state.card.cardNumber,
+    expiryDate: state.card.expiryDate,
+    cardName: state.card.cardName,
+    cvc: state.card.cvc,
+    token: state.auth.token
   }),
   { setCard, getCard }
 )(Profile);
